@@ -16,22 +16,23 @@
 #include <fcntl.h>
 
 void addstr(char *s, char *t){
-	while(*(++s));
-	while(*t)
-	{
-		*s++=*t++;
+	while(*(s)) s++;
+	while(*t){
+		*s=*t;
+		s++;
+		t++;
 	}
-	*s='\0';
-
 }
 
 int main() {
-	char a[256];
-	char b[256];
-	strcpy(a,"vasya");
+	char *b=malloc(sizeof(char)*50);
+	char *a=malloc(sizeof(char)*50);
+	strcpy(a,"abcde100000");
 	strcpy(b,"petya");
 	addstr(a,b);
 	printf("%s\n",a);
+	free(a);
+	free(b);
 	return 0;
 
 }
